@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BooksChallange.Tests.Repositories
 {
-    public class FakeBookRepository : IBookRepository
+    public class FakeBookRepository : IRepository<Book>
     {
         private List<Book> _fakeDb;
 
@@ -14,18 +14,18 @@ namespace BooksChallange.Tests.Repositories
             this.PopulateFakeRepository(itemCount);
         }
 
-        public Book Get(int id)
+        public Book Select(int id)
         {
             return _fakeDb.SingleOrDefault(b => b.Id == id);
         }
 
-        public Book Create(Book book)
+        public Book Insert(Book book)
         {
             book.Id = _fakeDb.Count() + 1;
 
             _fakeDb.Add(book);
 
-            return Get(book.Id);
+            return Select(book.Id);
         }
 
         public IEnumerable<Book> List()
@@ -39,7 +39,7 @@ namespace BooksChallange.Tests.Repositories
 
             for (int i = 1; i <= count; i++)
             {
-                this.Create(new Book($"Livro{i}"));
+                this.Insert(new Book($"Livro{i}"));
             }
         }
 

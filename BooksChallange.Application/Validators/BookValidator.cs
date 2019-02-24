@@ -1,5 +1,6 @@
 ﻿using BooksChallange.Domain.Models;
 using FluentValidation;
+
 namespace BooksChallange.Application.Validators
 {
     public class BookValidator : AbstractValidator<Book>

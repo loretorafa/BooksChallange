@@ -1,7 +1,9 @@
 using BooksChallange.Application.Services;
+using BooksChallange.Application.Validators;
 using BooksChallange.Domain.Interfaces;
 using BooksChallange.Domain.Models;
 using BooksChallange.Tests.Repositories;
+using FluentValidation;
 using NUnit.Framework;
 using System.Linq;
 
@@ -9,14 +11,14 @@ namespace BooksChallange.Tests
 {
     public class BookServiceTests
     {
-        private IBookService _service;
+        private IService<Book> _service;
         private int _itemCount = 0;
 
         [SetUp]
         public void Setup()
         {
             var fakeRepository = new FakeBookRepository(_itemCount);
-            this._service = new BookService(fakeRepository);
+            this._service = new BaseService<Book>(fakeRepository);
         }
 
         [Test]
@@ -49,8 +51,9 @@ namespace BooksChallange.Tests
             const string description = "bla bla bla";
             const string isbn = "3493284932";
             const string language = "BR";
+            var book = new Book(title, description, isbn, language);
 
-            var response = _service.Create(title, description, isbn, language);
+            var response = _service.Create<BookValidator>(book);
 
             Assert.IsNotNull(response);
             Assert.AreSame(typeof(Book), response.GetType());
@@ -58,14 +61,14 @@ namespace BooksChallange.Tests
         }
 
         [Test]
-        public void Create_InvalidBook_ReturnsNull()
+        public void Create_InvalidBook_ThrowsValidationException()
         {
             const string title = "Novo Livro";
+            var book = new Book(title);
 
-            var response = _service.Create(title);
+            TestDelegate testDelegate = new TestDelegate(() => _service.Create<BookValidator>(book));
 
-            Assert.IsNull(response);
-
+            Assert.Throws<ValidationException>(testDelegate);
         }
 
         [Test]
