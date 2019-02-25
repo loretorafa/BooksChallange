@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - DataAccess", "3.1 - D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksChallange.Infrastructure.DataAccess", "BooksChallange.Infrastructure.DataAccess\BooksChallange.Infrastructure.DataAccess.csproj", "{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Api", "4 - Api", "{06471411-9C7D-4665-9BB2-A5132719C0DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksChallange.Api", "BooksChallange.Api\BooksChallange.Api.csproj", "{67A70BE0-578F-4B66-BF65-B4369A6894C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A70BE0-578F-4B66-BF65-B4369A6894C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A70BE0-578F-4B66-BF65-B4369A6894C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A70BE0-578F-4B66-BF65-B4369A6894C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A70BE0-578F-4B66-BF65-B4369A6894C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D} = {61D854F6-01E3-4E67-BE94-5F1B06E455F3}
 		{DFCAB6E6-9492-4302-98DC-70903C4F2E71} = {9C03B097-35DB-4898-9BCF-857DEA3888CD}
 		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31} = {DFCAB6E6-9492-4302-98DC-70903C4F2E71}
+		{67A70BE0-578F-4B66-BF65-B4369A6894C4} = {06471411-9C7D-4665-9BB2-A5132719C0DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44E850DC-55AA-498E-B6FB-BE90CD80A501}

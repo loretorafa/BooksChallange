@@ -1,6 +1,7 @@
 using BooksChallange.Application.Services;
 using BooksChallange.Application.Validators;
 using BooksChallange.Domain.Entities;
+using BooksChallange.Domain.Interfaces;
 using BooksChallange.Infrastructure.DataAccess.Repositories;
 using FluentValidation;
 using NUnit.Framework;
@@ -10,8 +11,8 @@ namespace Tests
 {
     public class BookServiceTests
     {
-        private BookService _service;
-        private BookRepository _repository;
+        private IService<Book> _service;
+        private IRepository<Book> _repository;
 
         [SetUp]
         public void Setup()
@@ -20,30 +21,6 @@ namespace Tests
             this._service = new BookService(_repository);
 
             ClearRepository();
-        }
-
-        [Test]
-        public void GetById_BooksExists_ReturnsBook()
-        {
-            const int itemCount = 1;
-            PopulateRepository(itemCount);
-            var id = _service.List().FirstOrDefault().Id;
-
-            var response = _service.GetById(id);
-
-            Assert.IsNotNull(response);
-            Assert.AreSame(typeof(Book), response.GetType());
-            Assert.AreEqual(id, response.Id);
-        }
-
-        [Test]
-        public void GetById_BooksDoesNotExist_ReturnsNull()
-        {
-            const int id = 0;
-
-            var response = _service.GetById(id);
-
-            Assert.IsNull(response);
         }
 
         [Test]
@@ -71,6 +48,30 @@ namespace Tests
             TestDelegate testDelegate = new TestDelegate(() => _service.Create<BookValidator>(book));
 
             Assert.Throws<ValidationException>(testDelegate);
+        }
+
+        [Test]
+        public void GetById_BooksExists_ReturnsBook()
+        {
+            const int itemCount = 1;
+            PopulateRepository(itemCount);
+            var id = _service.List().FirstOrDefault().Id;
+
+            var response = _service.GetById(id);
+
+            Assert.IsNotNull(response);
+            Assert.AreSame(typeof(Book), response.GetType());
+            Assert.AreEqual(id, response.Id);
+        }
+
+        [Test]
+        public void GetById_BooksDoesNotExist_ReturnsNull()
+        {
+            const int id = 0;
+
+            var response = _service.GetById(id);
+
+            Assert.IsNull(response);
         }
 
         [Test]

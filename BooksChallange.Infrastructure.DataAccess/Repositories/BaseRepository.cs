@@ -1,16 +1,20 @@
 ﻿using BooksChallange.Domain.Interfaces;
 using BooksChallange.Domain.Entities;
 using BooksChallange.Infrastructure.DataAccess.Context;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace BooksChallange.Infrastructure.DataAccess.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private DbContext _context;
+        private BooksChallangeContext _context;
 
-        public BaseRepository(BookChallangeContext context)
+        public BaseRepository()
+        {
+            this._context = new BooksChallangeContext();
+        }
+
+        public BaseRepository(BooksChallangeContext context)
         {
             this._context = context;
         }
