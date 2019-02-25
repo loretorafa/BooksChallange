@@ -5,15 +5,21 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Tests", "0 - Tests", "{B66C1B0B-4EC6-4F7B-B886-B0E882B6C0D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksChallange.Tests", "BooksChallange.Tests\BooksChallange.Tests.csproj", "{4428F3E3-F40E-4577-9C90-344EFBB4F6F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksChallange.Tests", "BooksChallange.Tests\BooksChallange.Tests.csproj", "{4428F3E3-F40E-4577-9C90-344EFBB4F6F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{D0EB0A98-924D-4DC6-8E40-C7D3962D7764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksChallange.Domain", "BooksChallange.Domain\BooksChallange.Domain.csproj", "{9563B5DF-CD32-44E8-A2F6-9C73DECA86D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksChallange.Domain", "BooksChallange.Domain\BooksChallange.Domain.csproj", "{9563B5DF-CD32-44E8-A2F6-9C73DECA86D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{61D854F6-01E3-4E67-BE94-5F1B06E455F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksChallange.Application", "BooksChallange.Application\BooksChallange.Application.csproj", "{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksChallange.Application", "BooksChallange.Application\BooksChallange.Application.csproj", "{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{9C03B097-35DB-4898-9BCF-857DEA3888CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - DataAccess", "3.1 - DataAccess", "{DFCAB6E6-9492-4302-98DC-70903C4F2E71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksChallange.Infrastructure.DataAccess", "BooksChallange.Infrastructure.DataAccess\BooksChallange.Infrastructure.DataAccess.csproj", "{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,10 @@ Global
 		{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +51,8 @@ Global
 		{4428F3E3-F40E-4577-9C90-344EFBB4F6F6} = {B66C1B0B-4EC6-4F7B-B886-B0E882B6C0D4}
 		{9563B5DF-CD32-44E8-A2F6-9C73DECA86D9} = {D0EB0A98-924D-4DC6-8E40-C7D3962D7764}
 		{E3ACBB41-5C5F-481C-9865-BEC0CDA1347D} = {61D854F6-01E3-4E67-BE94-5F1B06E455F3}
+		{DFCAB6E6-9492-4302-98DC-70903C4F2E71} = {9C03B097-35DB-4898-9BCF-857DEA3888CD}
+		{EA326BAF-7CAA-45B1-B6A6-DF563118BF31} = {DFCAB6E6-9492-4302-98DC-70903C4F2E71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44E850DC-55AA-498E-B6FB-BE90CD80A501}

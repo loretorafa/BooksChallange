@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BooksChallange.Application\BooksChallange.Application.csproj" />
     <ProjectReference Include="..\BooksChallange.Domain\BooksChallange.Domain.csproj" />
+    <ProjectReference Include="..\BooksChallange.Infrastructure.DataAccess\BooksChallange.Infrastructure.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

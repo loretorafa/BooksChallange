@@ -1,4 +1,4 @@
-﻿using BooksChallange.Domain.Models;
+﻿using BooksChallange.Domain.Entities;
 using System.Collections.Generic;
 
 namespace BooksChallange.Domain.Interfaces
@@ -7,8 +7,10 @@ namespace BooksChallange.Domain.Interfaces
     {
         T Select(int id);
 
-        T Insert(T book);
+        T Insert(T obj);
 
         IEnumerable<T> List();
+
+        void Delete(int id);
     }
 }

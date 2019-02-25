@@ -1,31 +1,33 @@
 using BooksChallange.Application.Services;
 using BooksChallange.Application.Validators;
-using BooksChallange.Domain.Interfaces;
-using BooksChallange.Domain.Models;
-using BooksChallange.Tests.Repositories;
+using BooksChallange.Domain.Entities;
+using BooksChallange.Infrastructure.DataAccess.Repositories;
 using FluentValidation;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BooksChallange.Tests
+namespace Tests
 {
     public class BookServiceTests
     {
-        private IService<Book> _service;
-        private int _itemCount = 0;
+        private BookService _service;
+        private BookRepository _repository;
 
         [SetUp]
         public void Setup()
         {
-            var fakeRepository = new FakeBookRepository(_itemCount);
-            this._service = new BaseService<Book>(fakeRepository);
+            this._repository = new BookRepository();
+            this._service = new BookService(_repository);
+
+            ClearRepository();
         }
 
         [Test]
         public void GetById_BooksExists_ReturnsBook()
         {
-            const int id = 1;
-            SetItemCount(id);
+            const int itemCount = 1;
+            PopulateRepository(itemCount);
+            var id = _service.List().FirstOrDefault().Id;
 
             var response = _service.GetById(id);
 
@@ -75,7 +77,7 @@ namespace BooksChallange.Tests
         public void List_HasBooks_ReturnsBooks()
         {
             const int itemCount = 5;
-            SetItemCount(itemCount);
+            PopulateRepository(itemCount);
 
             var response = _service.List();
 
@@ -88,7 +90,7 @@ namespace BooksChallange.Tests
         public void List_HasNoBooks_ReturnsNoBooks()
         {
             const int itemCount = 0;
-            SetItemCount(itemCount);
+            PopulateRepository(itemCount);
 
             var response = _service.List();
 
@@ -96,11 +98,22 @@ namespace BooksChallange.Tests
             Assert.AreEqual(itemCount, response.ToList().Count);
         }
 
-        private void SetItemCount(int count)
+        private void PopulateRepository(int count)
         {
-            this._itemCount = count;
+            for (int i = 1; i <= count; i++)
+            {
+                _repository.Insert(new Book($"Livro{i}"));
+            }
+        }
 
-            Setup();
+        private void ClearRepository()
+        {
+            var currentBooks = _repository.List();
+
+            foreach (var book in currentBooks)
+            {
+                _repository.Delete(book.Id);
+            }
         }
     }
 }

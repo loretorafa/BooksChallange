@@ -1,5 +1,5 @@
 ﻿using BooksChallange.Domain.Interfaces;
-using BooksChallange.Domain.Models;
+using BooksChallange.Domain.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

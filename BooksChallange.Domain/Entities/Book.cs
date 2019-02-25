@@ -1,7 +1,9 @@
-﻿namespace BooksChallange.Domain.Models
+﻿namespace BooksChallange.Domain.Entities
 {
     public class Book : BaseEntity
     {
+        public Book() : base(){}
+
         public Book(string title = "", string description = "", string isbn = "", string language = "")
         {
             this.Title = title;

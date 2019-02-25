@@ -1,4 +1,4 @@
-﻿using BooksChallange.Domain.Models;
+﻿using BooksChallange.Domain.Entities;
 using FluentValidation;
 using System.Collections.Generic;
 
