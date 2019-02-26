@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BooksChallange.Application.Services
 {
-    public class BaseService<T> : IService<T> where T : BaseEntity
+    public abstract class BaseService<T> : IService<T> where T : BaseEntity
     {
         private readonly IRepository<T> _repository;
 
@@ -29,7 +29,7 @@ namespace BooksChallange.Application.Services
         }
 
 
-        public IEnumerable<T> List() => _repository.List();
+        public virtual IEnumerable<T> List() => _repository.List();
 
 
         private void Validate(T obj, AbstractValidator<T> validator)

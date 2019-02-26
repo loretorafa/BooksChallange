@@ -5,14 +5,9 @@ using System.Collections.Generic;
 
 namespace BooksChallange.Infrastructure.DataAccess.Repositories
 {
-    public class BaseRepository<T> : IRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
         private BooksChallangeContext _context;
-
-        public BaseRepository()
-        {
-            this._context = new BooksChallangeContext();
-        }
 
         public BaseRepository(BooksChallangeContext context)
         {

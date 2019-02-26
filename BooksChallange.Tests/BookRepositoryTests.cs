@@ -1,32 +1,26 @@
-using BooksChallange.Application.Services;
-using BooksChallange.Application.Validators;
 using BooksChallange.Domain.Entities;
-using BooksChallange.Domain.Interfaces.Services;
 using BooksChallange.Domain.Interfaces.Repositories;
 using BooksChallange.Infrastructure.DataAccess.Repositories;
-using FluentValidation;
 using NUnit.Framework;
 using System.Linq;
 using BooksChallange.Infrastructure.DataAccess.Context;
 
 namespace Tests
 {
-    public class BookServiceTests
+    public class BookRepositoryTests
     {
-        private IBookService _service;
         private IBookRepository _repository;
 
         [SetUp]
         public void Setup()
         {
             this._repository = new BookRepository(new BooksChallangeContext());
-            this._service = new BookService(_repository);
 
             ClearRepository();
         }
 
         [Test]
-        public void Create_ValidBook_ReturnsBook()
+        public void Insert_ValidBook_ReturnsBook()
         {
             const string title = "Novo Livro";
             const string description = "bla bla bla";
@@ -34,7 +28,7 @@ namespace Tests
             const string language = "BR";
             var book = new Book(title, description, isbn, language);
 
-            var response = _service.Create<BookValidator>(book);
+            var response = _repository.Insert(book);
 
             Assert.IsNotNull(response);
             Assert.AreSame(typeof(Book), response.GetType());
@@ -42,24 +36,13 @@ namespace Tests
         }
 
         [Test]
-        public void Create_InvalidBook_ThrowsValidationException()
-        {
-            const string title = "Novo Livro";
-            var book = new Book(title);
-
-            TestDelegate testDelegate = new TestDelegate(() => _service.Create<BookValidator>(book));
-
-            Assert.Throws<ValidationException>(testDelegate);
-        }
-
-        [Test]
-        public void GetById_BooksExists_ReturnsBook()
+        public void Select_BooksExists_ReturnsBook()
         {
             const int itemCount = 1;
             PopulateRepository(itemCount);
             var id = _repository.List().FirstOrDefault().Id;
 
-            var response = _service.GetById(id);
+            var response = _repository.Select(id);
 
             Assert.IsNotNull(response);
             Assert.AreSame(typeof(Book), response.GetType());
@@ -67,23 +50,38 @@ namespace Tests
         }
 
         [Test]
-        public void GetById_BooksDoesNotExist_ReturnsNull()
+        public void Select_BooksDoesNotExist_ReturnsNull()
         {
             const int id = 0;
 
-            var response = _service.GetById(id);
+            var response = _repository.Select(id);
 
             Assert.IsNull(response);
         }
 
         [Test]
-        public void List_ConnectsToExternalDataSource_ReturnsBooks()
+        public void List_HasBooks_ReturnsBooks()
         {
-            var response = _service.List();
+            const int itemCount = 5;
+            PopulateRepository(itemCount);
+
+            var response = _repository.List();
 
             Assert.IsNotNull(response);
-            Assert.IsTrue(response.ToList().Count > 0);
+            Assert.AreEqual(itemCount, response.ToList().Count);
 
+        }
+
+        [Test]
+        public void List_HasNoBooks_ReturnsNoBooks()
+        {
+            const int itemCount = 0;
+            PopulateRepository(itemCount);
+
+            var response = _repository.List();
+
+            Assert.IsNotNull(response);
+            Assert.AreEqual(itemCount, response.ToList().Count);
         }
 
         private void PopulateRepository(int count)

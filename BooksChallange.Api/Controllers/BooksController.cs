@@ -2,7 +2,7 @@
 using BooksChallange.Api.Responses;
 using BooksChallange.Application.Validators;
 using BooksChallange.Domain.Entities;
-using BooksChallange.Domain.Interfaces;
+using BooksChallange.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksChallange.Api.Controllers
@@ -11,9 +11,9 @@ namespace BooksChallange.Api.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private IService<Book> _service;
+        private IBookService _service;
 
-        public BooksController(IService<Book> service)
+        public BooksController(IBookService service)
         {
             this._service = service;
         }

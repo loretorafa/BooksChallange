@@ -1,7 +1,5 @@
 ﻿using BooksChallange.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
 
 namespace BooksChallange.Infrastructure.DataAccess.Context
 {
@@ -9,10 +7,14 @@ namespace BooksChallange.Infrastructure.DataAccess.Context
     {
         public DbSet<Book> Books { get; set; }
 
+        public BooksChallangeContext() : base() { }
+
+        public BooksChallangeContext(DbContextOptions options) : base(options) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseInMemoryDatabase("BooksChallangeTests.db");     
+                optionsBuilder.UseInMemoryDatabase("BooksChallangeTests.db");
         }
     }
 }

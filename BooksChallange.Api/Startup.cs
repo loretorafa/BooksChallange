@@ -1,6 +1,7 @@
 ﻿using BooksChallange.Application.Services;
-using BooksChallange.Domain.Entities;
-using BooksChallange.Domain.Interfaces;
+using BooksChallange.Domain.Interfaces.Repositories;
+using BooksChallange.Domain.Interfaces.Services;
+using BooksChallange.Infrastructure.DataAccess.Context;
 using BooksChallange.Infrastructure.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace BooksChallange.Api
 {
@@ -53,8 +54,12 @@ namespace BooksChallange.Api
 
             });
 
-            services.AddSingleton<IService<Book>, BookService>();
-            services.AddSingleton<IRepository<Book>, BookRepository>();
+            services.AddDbContext<BooksChallangeContext>(options => options.UseSqlite(Configuration.GetConnectionString("SqLiteConnection")));
+
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IBookRepository, BookRepository>();
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
