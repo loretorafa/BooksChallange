@@ -4,6 +4,6 @@ Está Api possibilita a criação e busca por livro, além de listar livros dire
 
 ## Instalação
 
-Procure na pasta de instalação o arquivo compactado referente a seu sistema operacional, descompacte na pasta de sua preferência e rode o arquivo executável.
+Procure na pasta de Publish o arquivo compactado referente a seu sistema operacional, descompacte na pasta de sua preferência e rode o arquivo executável.
 
 Em seu browser acesse http://localhost:5000
