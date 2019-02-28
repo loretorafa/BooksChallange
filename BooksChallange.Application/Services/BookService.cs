@@ -7,12 +7,17 @@ using System.Collections.Generic;
 namespace BooksChallange.Application.Services
 {
     public class BookService : BaseService<Book>, IBookService
-    { 
-        public BookService(IBookRepository repository) : base(repository){}
+    {
+        private IBookCrawler _crawler;
+
+        public BookService(IBookRepository repository, IBookCrawler crawler) : base(repository)
+        {
+            this._crawler = crawler;
+        }
 
         public override IEnumerable<Book> List()
         {
-            throw new NotImplementedException();
+            return _crawler.GetBooks();
         }
     }
 }

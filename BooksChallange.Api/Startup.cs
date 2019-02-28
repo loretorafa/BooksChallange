@@ -14,6 +14,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using BooksChallange.CrossCutting;
 
 namespace BooksChallange.Api
 {
@@ -58,8 +59,9 @@ namespace BooksChallange.Api
 
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBookCrawler, BookCrawler>();
 
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

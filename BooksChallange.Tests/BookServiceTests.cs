@@ -8,6 +8,7 @@ using FluentValidation;
 using NUnit.Framework;
 using System.Linq;
 using BooksChallange.Infrastructure.DataAccess.Context;
+using BooksChallange.CrossCutting;
 
 namespace Tests
 {
@@ -15,12 +16,14 @@ namespace Tests
     {
         private IBookService _service;
         private IBookRepository _repository;
+        private IBookCrawler _crawler;
 
         [SetUp]
         public void Setup()
         {
             this._repository = new BookRepository(new BooksChallangeContext());
-            this._service = new BookService(_repository);
+            this._crawler = new BookCrawler();
+            this._service = new BookService(_repository, _crawler);
 
             ClearRepository();
         }
@@ -77,12 +80,13 @@ namespace Tests
         }
 
         [Test]
-        public void List_ConnectsToExternalDataSource_ReturnsBooks()
+        public void List_ConnectsToExternalDataSource_ReturnsExpectedBookCount()
         {
-            var response = _service.List();
+            const int expectedBooks = 30;
+            var response = _service.List().ToList();
 
             Assert.IsNotNull(response);
-            Assert.IsTrue(response.ToList().Count > 0);
+            Assert.AreEqual(expectedBooks, response.Count());
 
         }
 
