@@ -52,7 +52,17 @@ namespace BooksChallange.CrossCutting
                     var bookUrl = nextNode.GetAttributeValue("href", "");
 
                     if (!String.IsNullOrEmpty(bookUrl))
-                        isbn = GetIsbn(bookUrl);
+                    {
+                        if (isbnRegex.Match(bookUrl).Success)
+                        {
+                            isbn = isbnRegex.Match(bookUrl).ToString();
+                        }
+                        else
+                        {
+                            isbn = GetIsbnFromContent(bookUrl);
+                        }
+                    }
+                     
                 }
                 else if (nextNode.Name == "p")
                 {
@@ -64,7 +74,7 @@ namespace BooksChallange.CrossCutting
             return new Book(title, description, isbn, language);
         }
 
-        private string GetIsbn(string bookUrl)
+        private string GetIsbnFromContent(string bookUrl)
         {
             var bookHtml = getBodyString(new Uri(bookUrl));
 
@@ -91,7 +101,7 @@ namespace BooksChallange.CrossCutting
         {
             var bodyString = GetBody(url).InnerText;
 
-            return newLineRegex.Replace(bodyString, string.Empty);
+            return newLineRegex.Replace(multipleWhiteSpacesRegex.Replace(bodyString, ""), string.Empty);
         }
     }
 }
